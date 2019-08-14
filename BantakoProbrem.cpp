@@ -19,7 +19,7 @@ constexpr ll longinf=__LONG_LONG_MAX__;
 //2. f[x]=f[2^i*3^j*5^k*7^l]+1の形になる整数xのうち最小のもの
 
 //1<=i,j,k,l<=logxくらいで
-//(xの各桁の総乗<=x)を使ったメモ化をするためにsortをするので
+//(xの各桁の総乗<x)を使ってメモ化をするためにsortしたり、飛び飛びの値を扱うためにmapを使うのでさらにlogがついて
 //計算量はO((logx)^4*loglogx)くらい、たぶん。
 
 vector<ll> candidate; //f[x]=hogeを満たすxの最小値の候補(x=2^i*3^j*5^k*7^lの形のもの)
