@@ -90,7 +90,7 @@ int main(){
     sort(candidate.begin(),candidate.end());
     sort(candidate2.begin(),candidate2.end());
     map<ll,int> f;
-    vector<ll> minimum_x(20,longinf); //f[x]=hogeとなるxの最小値がminimum_x[hoge] longinfで初期化
+    vector<ll> minimum_x(20,longinf); //f[x]=yとなるxの最小値がminimum_x[y] longinfで初期化(yのmaxは範囲内で11なので20くらい取っておく)
     for(auto x:candidate){
         if(x<10) f[x]=0;
         else f[x]=f[total_power(x)]+1;
