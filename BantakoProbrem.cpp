@@ -6,17 +6,26 @@ using namespace std;
 typedef long long ll;
 constexpr ll longinf=__LONG_LONG_MAX__;
 
+//Bantakoくんの問題
+
 //x:正の整数に対し
 //if xが十進法で二桁以上 then f[x]=f[xの各桁の総乗]+1
 //else f[x]=0
 //とfを定める
-//f[x]=yを満たすxの最小値を高速に求めるプログラム(ただしx<=3*10^17まで)
-//計算量はO((logx)^4*loglogx)くらい、たぶん
+//f[x]=yを満たすxの最小値を高速に求めるプログラム(ただしx<=3*10^17まで)((yはこの範囲だと11までしか値を取らない！))
 
-vector<ll> candidate; //f[x]=hogeを満たすxの最小値の候補
-vector<ll> candidate2; //f[x]=hogeを満たすxの最小値の候補2
+//方針はxの各桁の総和が2^i*3^j*5^k*7^lになることを使うもの 
+//1. 2^i*3^j*5^k*7^lの形の整数を全探索
+//2. f[x]=f[2^i*3^j*5^k*7^l]+1の形になるxのうち最小のものを全探索
 
-ll total_power_inv(ll n,int i2,int i3,int i5,int i7){ //各桁の総乗が2^i2*3^i3*5^i5*7^i7を満たす数のうち最小のものを返す
+//1<=i,j,k,l<=logxくらいで
+//(xの各桁の総乗<=x)を使ったメモ化をするためにsortをするので
+//計算量はO((logx)^4*loglogx)くらい、たぶん。
+
+vector<ll> candidate; //f[x]=hogeを満たすxの最小値の候補(x=2^i*3^j*5^k*7^lの形のもの)
+vector<ll> candidate2; //f[x]=hogeを満たすxの最小値の候補2(f[x]=f[2^i*3^j*5^k*7^l]+1を満たすxの最小値)
+
+ll total_power_inv(ll n,int i2,int i3,int i5,int i7){ //f[x]=f[2^i2*3^i3*5^i5*7^i7]+1を満たす数xのうち最小のものを返す
     ll ret=0;
     int i[10]={0,0,i2,i3,0,i5,0,i7,0,0};
     if(i[2]%3>=1&&i[3]%2==1){
@@ -44,12 +53,12 @@ ll total_power_inv(ll n,int i2,int i3,int i5,int i7){ //各桁の総乗が2^i2*3
     return ret;
 }
 
-ll total_power(ll n){ //nの各桁の総乗を返す
+ll total_power(ll x){ //nの各桁の総乗を返す
     ll ret=1;
-    while(n>0){
-        ll pos=n%10;
+    while(x>0){
+        ll pos=x%10;
         ret*=pos;
-        n/=10;
+        x/=10;
     }
     return ret;
 }
