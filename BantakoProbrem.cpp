@@ -86,7 +86,7 @@ void calc(ll n,ll pos,ll i2,ll i3,ll i5, ll i7){
 
 int main(){
     ll n=3e17;
-    calc(n,1,0,0,0,0); //nまでの候補となる数字を計算
+    calc(n,1,0,0,0,0); //nまでのf[x]=yを満たす最小値xの候補を計算してcandidate,candidate2に突っ込む
     sort(candidate.begin(),candidate.end());
     sort(candidate2.begin(),candidate2.end());
     map<ll,int> f;
