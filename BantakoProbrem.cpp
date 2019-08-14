@@ -64,7 +64,7 @@ ll total_power(ll x){ //nの各桁の総乗を返す
 }
 
 void calc(ll n,ll pos,ll i2,ll i3,ll i5, ll i7){
-    if(pos>=n||pos<0){
+    if(pos>=n){
         return;
     }
     else{
