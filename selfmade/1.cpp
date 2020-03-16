@@ -1,5 +1,4 @@
 #include<iostream>
-#include<vector>
 #include<math.h>
 using namespace std;
 
@@ -18,10 +17,8 @@ int main (){
     ll ans=0;
     for(int i=1;i<=N;i++){
         if(square_free[i]){
-            for(int j=1;i*j*j<=N;j++){
-                int k=sqrt(N/i)-j; //sqrt(i)(j+k)<=sqrt(N)を満たすkの個数.
-                ans+=k;
-            }
+            int k=sqrt(N/i); //sqrt(i)(j+k)<=sqrt(N)を満たすkの個数.
+            ans+=((k*(k-1))/2);
         }
     }
     cout<<ans<<endl;
