@@ -10,8 +10,9 @@ int main (){
     cin>>N;
     bool isvalid[N+1]; //ip^2の形でないものがisvalidでtrueになる.
     fill(isvalid,isvalid+N+1,true);
+    isvalid[0]=false;
     for(int p=2;p*p<=N;p++){
-        for(int i=0;i*p*p<=N;i++){
+        for(int i=1;i*p*p<=N;i++){
             isvalid[i*p*p]=false;
         }
     }
