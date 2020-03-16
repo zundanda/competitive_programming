@@ -8,22 +8,20 @@ using ll = long long;
 int main (){
     int N;
     cin>>N;
-    ll ans=0;
-    bool isvalid[N+1];
+    bool isvalid[N+1]; //ip^2の形でないものがisvalidでtrueになる.
     fill(isvalid,isvalid+N+1,true);
     for(int p=2;p*p<=N;p++){
         for(int i=0;i*p*p<=N;i++){
             isvalid[i*p*p]=false;
         }
     }
-    vector<int> valid;
+    ll ans=0;
     for(int i=0;i<=N;i++){
-        if(isvalid[i]) valid.push_back(i);
-    }
-    for(auto i:valid){
-        for(int j=1;j*j<=N/i;j++){
-            int k=sqrt(N/i)-j;
-            ans+=k;
+        if(isvalid[i]){
+            for(int j=1;j*j<=N/i;j++){
+                int k=sqrt(N/i)-j; //sqrt(i)(j+k)<=sqrt(N)を満たすkの個数を数える. 計算より1<=k<=sqrt(N/i)-jを満たす整数kの個数である.
+                ans+=k;
+            }
         }
     }
     cout<<ans<<endl;
