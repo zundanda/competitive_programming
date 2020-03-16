@@ -18,7 +18,7 @@ int main (){
     ll ans=0;
     for(int i=0;i<=N;i++){
         if(isvalid[i]){
-            for(int j=1;j*j<=N;j++){
+            for(int j=1;i*j*j<=N;j++){
                 int k=sqrt(N/i)-j; //sqrt(i)(j+k)<=sqrt(N)を満たすkの個数を数える. 計算より1<=k<=sqrt(N/i)-jを満たす整数kの個数である.
                 ans+=k;
             }
